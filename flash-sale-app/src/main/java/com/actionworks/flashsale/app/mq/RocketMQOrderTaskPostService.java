@@ -35,6 +35,7 @@ public class RocketMQOrderTaskPostService implements OrderTaskPostService {
         try {
             placeOrderMQProducer = new DefaultMQProducer(producerGroup);
             placeOrderMQProducer.setNamesrvAddr(nameServer);
+            placeOrderMQProducer.setSendMsgTimeout(100000);
             placeOrderMQProducer.start();
             logger.info("initOrderTaskProducer|下单任务生产者初始化成功|{},{},{}", nameServer, producerGroup, placeOrderTopic);
         } catch (Exception e) {

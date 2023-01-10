@@ -72,6 +72,15 @@ public class RedisCacheService implements DistributedCacheService {
     }
 
     @Override
+    public Integer getInteger(String key) {
+        Object result = redisTemplate.opsForValue().get(key);
+        if (result == null) {
+            return null;
+        }
+        return (Integer) (result);
+    }
+
+    @Override
     public <T> List<T> getList(String key, Class<T> targetClass) {
         Object result = redisTemplate.execute((RedisCallback<Object>) connection ->
                 connection.get(key.getBytes()));

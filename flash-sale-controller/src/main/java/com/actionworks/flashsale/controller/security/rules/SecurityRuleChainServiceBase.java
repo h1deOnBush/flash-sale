@@ -2,7 +2,7 @@ package com.actionworks.flashsale.controller.security.rules;
 
 import com.actionworks.flashsale.app.auth.AuthorizationService;
 import com.actionworks.flashsale.app.auth.model.AuthResult;
-import com.actionworks.flashsale.controller.security.rules.config.SecurityRulesConfigurationComponent;
+//import com.actionworks.flashsale.controller.security.rules.config.SecurityRulesConfigurationComponent;
 import com.actionworks.flashsale.security.SlidingWindowLimitService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -19,8 +19,8 @@ public abstract class SecurityRuleChainServiceBase {
     protected SlidingWindowLimitService slidingWindowLimitService;
     @Resource
     protected AuthorizationService authorizationService;
-    @Resource
-    protected SecurityRulesConfigurationComponent securityRulesConfigurationComponent;
+//    @Resource
+//    protected SecurityRulesConfigurationComponent securityRulesConfigurationComponent;
 
     @PostConstruct
     public void init() {

@@ -212,7 +212,8 @@ public class NormalStockCacheService implements ItemStockCacheService {
         if (itemStockCache != null) {
             return itemStockCache;
         }
-        Integer availableStock = distributedCacheService.getObject(getItemStocksCacheKey(itemId), Integer.class);
+        Integer availableStock = distributedCacheService.getInteger(getItemStocksCacheKey(itemId));
+        logger.info("getAvailableItemStock|{}|{}", getItemStocksCacheKey(itemId), availableStock);
         if (availableStock == null) {
             return null;
         }

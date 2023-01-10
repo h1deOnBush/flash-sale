@@ -15,7 +15,7 @@ public interface DistributedCacheService {
     <T> T getObject(String key, Class<T> targetClass);
 
     String getString(String key);
-
+    Integer getInteger(String key);
     <T> List<T> getList(String key, Class<T> targetClass);
 
     Boolean delete(String key);

@@ -14,6 +14,11 @@ public class MultiPlaceOrderTypesCondition extends AnyNestedCondition {
 
     }
 
+    @ConditionalOnProperty(name = "place_order_type", havingValue = "queued", matchIfMissing = true)
+    static class QueuedCondition {
+
+    }
+
     @ConditionalOnProperty(name = "place_order_type", havingValue = "buckets", matchIfMissing = true)
     static class BucketsCondition {
 

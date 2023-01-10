@@ -93,7 +93,7 @@ public class QueuedPlaceOrderService implements PlaceOrderService {
         PlaceOrderTask placeOrderTask = PlaceOrderTaskBuilder.with(userId, placeOrderCommand);
         placeOrderTask.setPlaceOrderTaskId(placeOrderTaskId);
         OrderTaskSubmitResult submitResult = placeOrderTaskService.submit(placeOrderTask);
-        logger.info("placeOrder|任务提交结果|{},{},{}", userId, placeOrderTaskId, JSON.toJSONString(placeOrderTask));
+        logger.info("placeOrder|任务提交结果|{},{},{}", userId, placeOrderTaskId, submitResult.getMessage());
 
         if (!submitResult.isSuccess()) {
             logger.info("placeOrder|下单任务提交失败|{},{}", userId, placeOrderCommand.getActivityId());

@@ -21,31 +21,31 @@ public class ResourcePathRuleChainService extends SecurityRuleChainServiceBase i
 
     @Override
     public boolean run(HttpServletRequest request, HttpServletResponse response) {
-        Rule rule = securityRulesConfigurationComponent.getPathRule(request.getServletPath());
-        if (!rule.isEnable()) {
-            return true;
-        }
-        try {
-            Long userId = getUserId(request);
-            if (userId != null) {
-                String userResourcePath = link(userId, request.getServletPath());
-                boolean result = slidingWindowLimitService.pass(userResourcePath, rule.getWindowPeriod(), rule.getWindowSize());
-                if (!result) {
-                    ExceptionResponse exceptionResponse = new ExceptionResponse()
-                            .setErrorCode(LIMIT_BLOCK.getCode())
-                            .setErrorMessage(LIMIT_BLOCK.getDesc());
-                    response.setContentType(MediaType.APPLICATION_JSON.getType());
-                    response.setCharacterEncoding("utf-8");
-                    response.getWriter().write(JSON.toJSONString(exceptionResponse));
-                    response.getWriter().close();
-                    logger.info("resourcePathLimit|资源路径限制|{}", userResourcePath);
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            logger.error("resourcePathLimit|资源路径限制异常|{}", e);
-            return false;
-        }
+//        Rule rule = securityRulesConfigurationComponent.getPathRule(request.getServletPath());
+//        if (!rule.isEnable()) {
+//            return true;
+//        }
+//        try {
+//            Long userId = getUserId(request);
+//            if (userId != null) {
+//                String userResourcePath = link(userId, request.getServletPath());
+//                boolean result = slidingWindowLimitService.pass(userResourcePath, rule.getWindowPeriod(), rule.getWindowSize());
+//                if (!result) {
+//                    ExceptionResponse exceptionResponse = new ExceptionResponse()
+//                            .setErrorCode(LIMIT_BLOCK.getCode())
+//                            .setErrorMessage(LIMIT_BLOCK.getDesc());
+//                    response.setContentType(MediaType.APPLICATION_JSON.getType());
+//                    response.setCharacterEncoding("utf-8");
+//                    response.getWriter().write(JSON.toJSONString(exceptionResponse));
+//                    response.getWriter().close();
+//                    logger.info("resourcePathLimit|资源路径限制|{}", userResourcePath);
+//                    return false;
+//                }
+//            }
+//        } catch (Exception e) {
+//            logger.error("resourcePathLimit|资源路径限制异常|{}", e);
+//            return false;
+//        }
         return true;
     }
 
